@@ -171,8 +171,8 @@ const Hero: React.FC = () => {
             {/* <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full neo-panel mb-2 shadow-lg">
               <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
               <span className="text-base font-semibold text-gray-700 dark:text-gray-300"> */}
-                {/* Available for new opportunities */}
-              {/* </span>
+            {/* Available for new opportunities */}
+            {/* </span>
               <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse delay-500"></div>
             </div> */}
           </motion.div>
