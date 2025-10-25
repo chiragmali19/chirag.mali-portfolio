@@ -93,7 +93,7 @@ const Skills: React.FC = () => {
           {[
             { icon: "📚", number: "1+", label: "Years Learning", color: "from-blue-500 to-cyan-500" },
             { icon: "🚀", number: "10+", label: "Projects Completed", color: "from-purple-500 to-pink-500" },
-            { icon: "📱", number: "2", label: "Mobile Apps Published", color: "from-orange-500 to-red-500" },
+            { icon: "📱", number: "5+", label: "Mobile Apps Published", color: "from-orange-500 to-red-500" },
           ].map((stat, index) => (
             <div
               key={index}
