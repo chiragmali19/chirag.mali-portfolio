@@ -92,21 +92,50 @@ const Projects: React.FC = () => {
         {/* Enhanced Header */}
         <ParallaxContainer speed={0.3}>
           <StaggerContainer className="text-center mb-20">
-            <StaggerItem>
-              <motion.div
-                className="inline-flex items-center space-x-3 px-6 py-3 rounded-full neo-panel mb-8"
-                whileHover={{ scale: 1.05 }}
-              >
-                <Code size={20} className="text-purple-500" />
-                <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">
-                  Featured Work
-                </span>
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              </motion.div>
-            </StaggerItem>
+          <StaggerItem>
+  <motion.div
+    className="inline-flex items-center gap-3 rounded-full border border-white/10
+               bg-black/70 px-6 py-3 mb-8 backdrop-blur-md
+               shadow-[0_0_0_1px_rgba(148,163,184,0.18),0_18px_35px_rgba(88,28,135,0.55)]
+               hover:shadow-[0_0_0_1px_rgba(148,163,184,0.3),0_22px_45px_rgba(124,58,237,0.8)]
+               transition-all duration-300"
+    whileHover={{ scale: 1.03 }}
+  >
+    {/* Icon bubble */}
+    <div
+      className="flex h-9 w-9 items-center justify-center rounded-full
+                 bg-gradient-to-tr from-purple-500 via-fuchsia-500 to-pink-500
+                 shadow-[0_6px_14px_rgba(236,72,153,0.7)]"
+    >
+      <Code size={18} className="text-white" />
+    </div>
+
+    {/* Text */}
+    <div className="flex flex-col justify-center leading-snug">
+      <span className="text-[10px] font-medium tracking-[0.22em] text-slate-400">
+        HIGHLIGHT
+      </span>
+      <span className="text-sm font-semibold text-slate-50">
+        Featured Work
+      </span>
+    </div>
+
+    {/* Status */}
+    <div className="ml-2 flex items-center gap-1">
+      <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+      <span className="text-[11px] font-medium text-emerald-400">
+        Live
+      </span>
+    </div>
+  </motion.div>
+</StaggerItem>
+
+
+
+
 
             <StaggerItem>
-              <h2 className="text-heading gradient-text mb-8">
+              <h2 className="text-heading gradient-text mb-8 bottom-20">
                 Projects
               </h2>
             </StaggerItem>

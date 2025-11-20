@@ -7,19 +7,19 @@ const Skills: React.FC = () => {
   const skillCategories = [
     {
       category: 'Languages',
-      skills: ['Dart', 'Java', 'HTML', 'CSS']
+      skills: ['Dart']
     },
     {
       category: 'Frameworks',
-      skills: ['Flutter', 'Bootstrap']
+      skills: ['Flutter']
     },
     {
       category: 'State Management',
-      skills: ['GetX']
+      skills: ['GetX, BloC, Provider']
     },
     {
       category: 'Cloud/Database',
-      skills: ['Firebase']
+      skills: ['Firebase, Supabase']
     }
   ];
 

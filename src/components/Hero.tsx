@@ -5,6 +5,7 @@ import {
 } from 'lucide-react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { MagneticButton } from './ScrollAnimations';
+import profile from '../assets/profile.jpeg';
 
 const Hero: React.FC = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -16,6 +17,10 @@ const Hero: React.FC = () => {
   const y = useTransform(smoothProgress, [0, 1], [0, -200]);
   const opacity = useTransform(smoothProgress, [0, 0.8], [1, 0]);
   const scale = useTransform(smoothProgress, [0, 1], [1, 0.8]);
+
+  const width = window.innerWidth;
+  console.log(width, 11111);
+
 
   useEffect(() => {
     setIsLoaded(true);
@@ -53,11 +58,11 @@ const Hero: React.FC = () => {
 
   return (
     <section
-  id="hero"
-  className="relative min-h-screen flex items-center justify-center overflow-auto transform-3d bg-gradient-to-br from-gray-50 to-white dark:from-slate-900 dark:via-purple-900 dark:to-slate-900 text-gray-900 dark:text-white
+      id="hero"
+      className="relative min-h-screen flex items-center justify-center overflow-auto transform-3d bg-gradient-to-br from-gray-50 to-white dark:from-slate-900 dark:via-purple-900 dark:to-slate-900 text-gray-900 dark:text-white
     px-2 pt-6 pb-8 sm:pt-12 sm:pb-16"
-  ref={heroRef}
->
+      ref={heroRef}
+    >
       {/* Mesh & Grid Backgrounds */}
       <div className="absolute inset-0 mesh-bg-animated opacity-30 dark:opacity-20"></div>
       <div className="absolute inset-0 bg-[linear-gradient(rgba(139,92,246,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(139,92,246,0.05)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div>
@@ -148,7 +153,7 @@ const Hero: React.FC = () => {
         <div className="flex flex-col sm:flex-row items-center sm:items-start justify-center gap-7 lg:gap-10 mb-4 mt-5">
           {/* Profile Image */}
           <motion.img
-            src="../src/assets/profile.jpeg"
+            src={profile}
             alt="Chirag Mali Profile"
             className="w-28 h-28 lg:w-36 lg:h-36 rounded-full object-cover shadow-lg border-4 border-purple-400 bg-white"
             initial={{ opacity: 0, scale: 0.9 }}
@@ -158,9 +163,12 @@ const Hero: React.FC = () => {
           />
           {/* Name, Tagline, Description */}
           <div className="flex flex-col items-center sm:items-start gap-1 sm:gap-3">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold gradient-text mb-1 text-center sm:text-left">
-              Chirag Mali
-            </h1>
+            <div className="pb-2">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold gradient-text mb-1 text-center sm:text-left">
+                Chirag Mali
+              </h1>
+            </div>
+
             <div className="text-base sm:text-lg lg:text-xl xl:text-2xl font-semibold text-gray-600 dark:text-gray-300 mb-1 text-center sm:text-left">
               Flutter Developer &{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 font-bold ml-2">
@@ -272,10 +280,10 @@ const Hero: React.FC = () => {
         </motion.div>
 
         {/* Scroll Indicator */}
-        {/* <motion.div
-          className="absolute bottom-12 left-1/2 transform -translate-x-1/2"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+        {width >= 500 && (<motion.div
+          className="absolute top-[110%] left-[50%] transform -translate-x-1/2 -translate-y-1/2"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ delay: 2.5, duration: 0.8 }}
         >
           <MagneticButton
@@ -290,7 +298,7 @@ const Hero: React.FC = () => {
               <ArrowDown size={24} className="text-purple-600 dark:text-purple-300 group-hover:text-purple-700 dark:group-hover:text-white transition-colors duration-300" />
             </motion.div>
           </MagneticButton>
-        </motion.div> */}
+        </motion.div>)}
       </motion.div>
     </section>
   );
