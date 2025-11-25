@@ -8,7 +8,6 @@ import Navbar from './components/Navbar';
 import AnimatedBackground from './components/AnimatedBackground';
 import ScrollProgress from './components/ScrollProgress';
 import ThemeToggle from './components/ThemeToggle';
-import CursorFollower from './components/CursorFollower';
 import { useTheme } from './hooks/useTheme';
 
 function App() {
@@ -37,7 +36,6 @@ function App() {
         color: 'var(--text-primary)'
       }}
     >
-      <CursorFollower />
       <ScrollProgress />
       <AnimatedBackground />
       <ThemeToggle />

@@ -27,7 +27,7 @@ const Contact: React.FC = () => {
     <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
+          <h2 className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-teal-500 to-cyan-500 bg-clip-text text-transparent">
             Get In Touch
           </h2>
           <p className="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
@@ -51,10 +51,10 @@ const Contact: React.FC = () => {
                   { icon: Github, text: "Check out my code", href: "https://github.com/chiragmali19" }
                 ].map((item, index) => (
                   <a key={index} href={item.href} target="_blank" rel="noopener noreferrer" className="flex items-center group">
-                    <div className="p-3 bg-gray-200 dark:bg-purple-500/10 rounded-full mr-4 group-hover:bg-purple-200 dark:group-hover:bg-purple-500/20 transition-all duration-300">
-                      <item.icon className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+                    <div className="p-3 bg-gray-200 dark:bg-teal-500/10 rounded-full mr-4 group-hover:bg-teal-200 dark:group-hover:bg-teal-500/20 transition-all duration-300">
+                      <item.icon className="w-6 h-6 text-teal-600 dark:text-teal-400" />
                     </div>
-                    <span className="text-gray-700 dark:text-gray-300 group-hover:text-purple-600 dark:group-hover:text-purple-300 transition-colors duration-300">{item.text}</span>
+                    <span className="text-gray-700 dark:text-gray-300 group-hover:text-teal-600 dark:group-hover:text-teal-300 transition-colors duration-300">{item.text}</span>
                   </a>
                 ))}
               </div>
@@ -63,9 +63,9 @@ const Contact: React.FC = () => {
         </div>
 
         {/* Footer */}
-        <div className="mt-16 pt-8 border-t border-purple-500/20 text-center">
+        <div className="mt-16 pt-8 border-t border-teal-500/20 text-center">
           <p className="text-gray-400">
-            © 2024 Chirag Mali. Built with React & TypeScript.
+            © 2024 Chirag Mali.
           </p>
         </div>
       </div>

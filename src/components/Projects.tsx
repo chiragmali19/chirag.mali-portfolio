@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { ExternalLink, Github, Smartphone, Code, Star, Calendar, Users, X, Filter, Grid, List } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { ExternalLink, Github, Smartphone, Code, Star, Calendar, Users, X } from 'lucide-react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import taskmatePng from '../assets/taskmate.png';
 import project1Png from '../assets/project2.png';
@@ -7,11 +7,7 @@ import formatflowPng from '../assets/formatflow.webp';
 import { StaggerContainer, StaggerItem, MagneticButton, ParallaxContainer } from './ScrollAnimations';
 
 const Projects: React.FC = () => {
-  const [hoveredProject, setHoveredProject] = useState<number | null>(null);
-  const [isVisible, setIsVisible] = useState(false);
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
-  const [filter, setFilter] = useState<string>('all');
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const sectionRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -65,65 +61,46 @@ const Projects: React.FC = () => {
     }
   ];
 
-  const categories = ['all', 'Mobile App', 'AI', 'Productivity'];
 
-  const filteredProjects = projects.filter(project =>
-    filter === 'all' || project.tags.includes(filter) || project.category === filter
-  );
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting);
-      },
-      { threshold: 0.2 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
 
   return (
-    <section id="projects" className="py-24 lg:py-32 px-4 sm:px-6 lg:px-8" ref={sectionRef}>
+    <section id="projects" className="pt-32 pb-24 lg:pt-40 lg:pb-32 px-4 sm:px-6 lg:px-8" ref={sectionRef}>
       <div className="max-w-7xl mx-auto">
         {/* Enhanced Header */}
         <ParallaxContainer speed={0.3}>
-          <StaggerContainer className="text-center mb-20">
+          <StaggerContainer className="text-center mb-20 pt-8">
           <StaggerItem>
   <motion.div
-    className="inline-flex items-center gap-3 rounded-full border border-white/10
-               bg-black/70 px-6 py-3 mb-8 backdrop-blur-md
-               shadow-[0_0_0_1px_rgba(148,163,184,0.18),0_18px_35px_rgba(88,28,135,0.55)]
-               hover:shadow-[0_0_0_1px_rgba(148,163,184,0.3),0_22px_45px_rgba(124,58,237,0.8)]
+    className="inline-flex items-center gap-3 rounded-full border border-gray-300/50 dark:border-white/10
+               bg-white/90 dark:bg-black/70 px-6 py-3 mb-8 backdrop-blur-md
+               shadow-[0_0_0_1px_rgba(20,184,166,0.18),0_18px_35px_rgba(20,184,166,0.25)]
+               hover:shadow-[0_0_0_1px_rgba(20,184,166,0.3),0_22px_45px_rgba(20,184,166,0.4)]
                transition-all duration-300"
     whileHover={{ scale: 1.03 }}
   >
     {/* Icon bubble */}
     <div
       className="flex h-9 w-9 items-center justify-center rounded-full
-                 bg-gradient-to-tr from-purple-500 via-fuchsia-500 to-pink-500
-                 shadow-[0_6px_14px_rgba(236,72,153,0.7)]"
+                 bg-gradient-to-tr from-teal-500 via-cyan-500 to-emerald-500
+                 shadow-[0_6px_14px_rgba(20,184,166,0.5)]"
     >
       <Code size={18} className="text-white" />
     </div>
 
     {/* Text */}
     <div className="flex flex-col justify-center leading-snug">
-      <span className="text-[10px] font-medium tracking-[0.22em] text-slate-400">
+      <span className="text-[10px] font-medium tracking-[0.22em] text-gray-500 dark:text-slate-400">
         HIGHLIGHT
       </span>
-      <span className="text-sm font-semibold text-slate-50">
+      <span className="text-sm font-semibold text-gray-900 dark:text-slate-50">
         Featured Work
       </span>
     </div>
 
     {/* Status */}
     <div className="ml-2 flex items-center gap-1">
-      <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-      <span className="text-[11px] font-medium text-emerald-400">
+      <span className="h-2 w-2 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse" />
+      <span className="text-[11px] font-medium text-emerald-600 dark:text-emerald-400">
         Live
       </span>
     </div>
@@ -135,7 +112,7 @@ const Projects: React.FC = () => {
 
 
             <StaggerItem>
-              <h2 className="text-heading gradient-text mb-8 bottom-20">
+              <h2 className="text-heading gradient-text mb-8 overflow-visible leading-normal">
                 Projects
               </h2>
             </StaggerItem>
@@ -150,67 +127,20 @@ const Projects: React.FC = () => {
           </StaggerContainer>
         </ParallaxContainer>
 
-        {/* Advanced Filter and View Controls */}
-        <StaggerContainer className="flex flex-col sm:flex-row justify-between items-center mb-12 gap-6">
-          <StaggerItem>
-            <div className="flex items-center space-x-2">
-              <Filter size={20} className="text-gray-600 dark:text-gray-400" />
-              <div className="flex flex-wrap gap-2">
-                {categories.map((category) => (
-                  <MagneticButton
-                    key={category}
-                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${filter === category
-                      ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg'
-                      : 'neo-panel text-gray-600 dark:text-gray-300 hover:text-purple-600'
-                      }`}
-                    onClick={() => setFilter(category)}
-                    strength={0.1}
-                  >
-                    {category === 'all' ? 'All Projects' : category}
-                  </MagneticButton>
-                ))}
-              </div>
-            </div>
-          </StaggerItem>
-
-          <StaggerItem>
-            <div className="flex items-center space-x-2 neo-panel p-2 rounded-full">
-              <button
-                onClick={() => setViewMode('grid')}
-                className={`p-2 rounded-full transition-all duration-300 ${viewMode === 'grid' ? 'bg-purple-600 text-white' : 'text-gray-600 dark:text-gray-400'
-                  }`}
-              >
-                <Grid size={18} />
-              </button>
-              <button
-                onClick={() => setViewMode('list')}
-                className={`p-2 rounded-full transition-all duration-300 ${viewMode === 'list' ? 'bg-purple-600 text-white' : 'text-gray-600 dark:text-gray-400'
-                  }`}
-              >
-                <List size={18} />
-              </button>
-            </div>
-          </StaggerItem>
-        </StaggerContainer>
-
         {/* Advanced Projects Grid */}
         <motion.div style={{ y }}>
           <AnimatePresence mode="wait">
             <motion.div
-              key={filter + viewMode}
-              className={`${viewMode === 'grid'
-                ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10'
-                : 'space-y-8'
-                }`}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.5 }}
             >
-              {filteredProjects.map((project, index) => (
+              {projects.map((project, index) => (
                 <motion.div
                   key={project.title}
-                  className={`isotope-item ${viewMode === 'list' ? 'w-full' : ''}`}
+                  className="isotope-item"
                   initial={{ opacity: 0, scale: 0.9, y: 50 }}
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.9, y: -50 }}
@@ -225,12 +155,6 @@ const Projects: React.FC = () => {
                 >
                   <ProjectCard
                     project={project}
-                    index={index}
-                    viewMode={viewMode}
-                    hoveredProject={hoveredProject}
-                    setHoveredProject={setHoveredProject}
-                    selectedProject={selectedProject}
-                    setSelectedProject={setSelectedProject}
                   />
                 </motion.div>
               ))}
@@ -239,7 +163,7 @@ const Projects: React.FC = () => {
         </motion.div>
 
         {/* Enhanced CTA */}
-        <StaggerContainer className="text-center mt-20">
+        {/* <StaggerContainer className="text-center mt-20">
           <StaggerItem>
             <MagneticButton
               className="btn-secondary group transform-3d"
@@ -251,7 +175,7 @@ const Projects: React.FC = () => {
               </span>
             </MagneticButton>
           </StaggerItem>
-        </StaggerContainer>
+        </StaggerContainer> */}
       </div>
 
       {/* Enhanced Project Modal */}
@@ -270,31 +194,20 @@ const Projects: React.FC = () => {
 // Enhanced Project Card Component
 const ProjectCard: React.FC<{
   project: any;
-  index: number;
-  viewMode: 'grid' | 'list';
-  hoveredProject: number | null;
-  setHoveredProject: (index: number | null) => void;
-  selectedProject: number | null;
-  setSelectedProject: (index: number | null) => void;
-}> = ({ project, index, viewMode, hoveredProject, setHoveredProject, selectedProject, setSelectedProject }) => {
+}> = ({ project }) => {
   return (
     <motion.div
-      className={`group relative transform-3d ${viewMode === 'grid' ? 'h-full min-h-[600px]' : 'flex items-center space-x-8 p-8'
-        }`}
-      onMouseEnter={() => setHoveredProject(index)}
-      onMouseLeave={() => setHoveredProject(null)}
+      className="group relative transform-3d h-full min-h-[600px]"
       whileHover={{
-        scale: viewMode === 'grid' ? 1.02 : 1.01,
-        rotateY: viewMode === 'grid' ? 2 : 0,
-        rotateX: viewMode === 'grid' ? 2 : 0,
+        scale: 1.02,
+        rotateY: 2,
+        rotateX: 2,
       }}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
     >
-      <div className={`neo-panel overflow-hidden ${viewMode === 'grid' ? 'h-full flex flex-col rounded-3xl' : 'rounded-2xl w-full'
-        }`}>
+      <div className="neo-panel overflow-hidden h-full flex flex-col rounded-3xl">
         {/* Project Image */}
-        <div className={`relative overflow-hidden ${viewMode === 'grid' ? 'h-72 lg:h-80' : 'w-64 h-48 flex-shrink-0'
-          }`}>
+        <div className="relative overflow-hidden h-72 lg:h-80">
           <motion.img
             src={project.image}
             alt={project.title}
@@ -315,7 +228,11 @@ const ProjectCard: React.FC<{
                 }`}
               whileHover={{ scale: 1.05 }}
             >
-              {project.category === "Mobile App" ? <Smartphone size={12} className="mr-1" /> : <Code size={12} className="mr-1" />}
+              {project.category === "Mobile App" ? (
+                <Smartphone size={12} className={`mr-1 ${project.status === 'Live' ? 'text-emerald-700 dark:text-emerald-300' : 'text-teal-700 dark:text-teal-300'}`} />
+              ) : (
+                <Code size={12} className={`mr-1 ${project.status === 'Live' ? 'text-emerald-700 dark:text-emerald-300' : 'text-teal-700 dark:text-teal-300'}`} />
+              )}
               {project.status}
             </motion.span>
           </div>
@@ -323,10 +240,10 @@ const ProjectCard: React.FC<{
           {/* Year Badge */}
           <div className="absolute top-4 right-4">
             <motion.span
-              className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-black/30 text-white backdrop-blur-sm border border-white/30"
+              className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-white/90 dark:bg-black/30 text-gray-900 dark:text-white backdrop-blur-sm border border-gray-300/50 dark:border-white/30"
               whileHover={{ scale: 1.05 }}
             >
-              <Calendar size={12} className="mr-1" />
+              <Calendar size={12} className="mr-1 text-gray-900 dark:text-white" />
               {project.year}
             </motion.span>
           </div>
@@ -340,7 +257,7 @@ const ProjectCard: React.FC<{
             <div className="flex space-x-4">
               {project.github && (
                 <MagneticButton
-                  className="neo-panel p-4 rounded-full text-white backdrop-blur-sm"
+                  className="neo-panel p-4 rounded-full backdrop-blur-sm"
                   strength={0.2}
                 >
                   <a
@@ -348,12 +265,12 @@ const ProjectCard: React.FC<{
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Github size={20} />
+                    <Github size={20} className="text-gray-900 dark:text-white" />
                   </a>
                 </MagneticButton>
               )}
               <MagneticButton
-                className="neo-panel p-4 rounded-full text-white backdrop-blur-sm"
+                className="neo-panel p-4 rounded-full backdrop-blur-sm"
                 strength={0.2}
               >
                 <a
@@ -361,7 +278,7 @@ const ProjectCard: React.FC<{
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <ExternalLink size={20} />
+                  <ExternalLink size={20} className="text-gray-900 dark:text-white" />
                 </a>
               </MagneticButton>
             </div>
@@ -369,17 +286,14 @@ const ProjectCard: React.FC<{
         </div>
 
         {/* Project Content */}
-        <div className={`p-6 lg:p-8 ${viewMode === 'grid' ? 'flex flex-col flex-1' : 'flex-1'}`}>
+        <div className="p-6 lg:p-8 flex flex-col flex-1">
           <div className="flex-1">
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-purple-600 dark:group-hover:text-purple-300 transition-colors duration-300">
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-teal-600 dark:group-hover:text-teal-300 transition-colors duration-300">
               {project.title}
             </h3>
 
             <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
-              {viewMode === 'grid'
-                ? project.description.substring(0, 150) + '...'
-                : project.description
-              }
+              {project.description.substring(0, 150) + '...'}
             </p>
 
             {/* Enhanced Stats */}
@@ -402,7 +316,7 @@ const ProjectCard: React.FC<{
               {project.tech.map((tech: string, techIndex: number) => (
                 <motion.span
                   key={techIndex}
-                  className="px-3 py-1 text-xs font-semibold bg-purple-100 dark:bg-purple-500/10 text-purple-800 dark:text-purple-300 rounded-full border border-purple-200 dark:border-purple-500/20"
+                  className="px-3 py-1 text-xs font-semibold bg-teal-100 dark:bg-teal-500/10 text-teal-800 dark:text-teal-300 rounded-full border border-teal-200 dark:border-teal-500/20"
                   whileHover={{ scale: 1.05, y: -2 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
                 >
@@ -425,7 +339,7 @@ const ProjectCard: React.FC<{
                   rel="noopener noreferrer"
                   className="flex items-center justify-center w-full"
                 >
-                  <Github size={18} className="mr-2" />
+                  <Github size={18} className="mr-2 text-teal-700 dark:text-teal-300" />
                   Code
                 </a>
               </MagneticButton>
@@ -440,7 +354,7 @@ const ProjectCard: React.FC<{
                 rel="noopener noreferrer"
                 className="flex items-center justify-center w-full"
               >
-                <ExternalLink size={18} className="mr-2" />
+                <ExternalLink size={18} className="mr-2 text-white" />
                 {project.liveButtonText || (project.category === "Mobile App" ? "Play Store" : "Live Demo")}
               </a>
             </MagneticButton>
@@ -519,7 +433,7 @@ const ProjectModal: React.FC<{
                     rel="noopener noreferrer"
                     className="flex items-center"
                   >
-                    <Github size={20} className="mr-2" />
+                    <Github size={20} className="mr-2 text-purple-700 dark:text-purple-300" />
                     View Code
                   </a>
                 </MagneticButton>
@@ -531,7 +445,7 @@ const ProjectModal: React.FC<{
                   rel="noopener noreferrer"
                   className="flex items-center"
                 >
-                  <ExternalLink size={20} className="mr-2" />
+                  <ExternalLink size={20} className="mr-2 text-white" />
                   {project.liveButtonText || "Live Demo"}
                 </a>
               </MagneticButton>

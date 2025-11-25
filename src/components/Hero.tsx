@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import {
-  ArrowDown, Github, Linkedin, Mail, Download,
-  Sparkles, Code2, Smartphone, Zap, Cpu, Palette
+  ArrowDown, Github, Linkedin, Mail, Download
 } from 'lucide-react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { MagneticButton } from './ScrollAnimations';
@@ -10,7 +9,6 @@ import profile from '../assets/profile.jpeg';
 const Hero: React.FC = () => {
   const heroRef = useRef<HTMLDivElement>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isLoaded, setIsLoaded] = useState(false);
 
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
@@ -23,7 +21,6 @@ const Hero: React.FC = () => {
 
 
   useEffect(() => {
-    setIsLoaded(true);
     const handleMouseMove = (e: MouseEvent) => {
       if (heroRef.current) {
         const rect = heroRef.current.getBoundingClientRect();
@@ -47,19 +44,10 @@ const Hero: React.FC = () => {
     }
   };
 
-  const floatingElements = [
-    { icon: Code2, label: 'Flutter Dev', color: 'text-blue-500', delay: 0 },
-    { icon: Smartphone, label: '5+ Apps Live', color: 'text-green-500', delay: 0.2 },
-    { icon: Sparkles, label: 'AI Integration', color: 'text-purple-500', delay: 0.4 },
-    { icon: Zap, label: 'Fast Performance', color: 'text-yellow-500', delay: 0.6 },
-    { icon: Cpu, label: 'Modern Tech', color: 'text-red-500', delay: 0.8 },
-    { icon: Palette, label: 'UI/UX Design', color: 'text-pink-500', delay: 1.0 },
-  ];
-
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-auto transform-3d bg-gradient-to-br from-gray-50 to-white dark:from-slate-900 dark:via-purple-900 dark:to-slate-900 text-gray-900 dark:text-white
+      className="relative min-h-screen flex items-center justify-center overflow-auto transform-3d bg-gradient-to-br from-gray-50 to-white dark:from-slate-900 dark:via-teal-900/20 dark:to-slate-900 text-gray-900 dark:text-white
     px-2 pt-6 pb-8 sm:pt-12 sm:pb-16"
       ref={heroRef}
     >
@@ -125,7 +113,7 @@ const Hero: React.FC = () => {
           }}
           style={{ transform: `translate(${mousePosition.x * 20}px, ${mousePosition.y * 20}px)` }}
         >
-          <div className="w-full h-full bg-gradient-to-r from-purple-400/20 to-pink-400/20 rounded-3xl backdrop-blur-sm border border-purple-300/30 animate-morphing"></div>
+          <div className="w-full h-full bg-gradient-to-r from-teal-400/20 to-cyan-400/20 rounded-3xl backdrop-blur-sm border border-teal-300/30 animate-morphing"></div>
         </motion.div>
         <motion.div
           className="absolute bottom-1/4 left-1/3 w-24 h-24 transform-3d"
@@ -155,7 +143,7 @@ const Hero: React.FC = () => {
           <motion.img
             src={profile}
             alt="Chirag Mali Profile"
-            className="w-28 h-28 lg:w-36 lg:h-36 rounded-full object-cover shadow-lg border-4 border-purple-400 bg-white"
+            className="w-28 h-28 lg:w-36 lg:h-36 rounded-full object-cover shadow-lg border-4 border-teal-400 bg-white"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.2, delay: 0.2 }}
@@ -163,24 +151,27 @@ const Hero: React.FC = () => {
           />
           {/* Name, Tagline, Description */}
           <div className="flex flex-col items-center sm:items-start gap-1 sm:gap-3">
-            <div className="pb-2">
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold gradient-text mb-1 text-center sm:text-left">
+            <div className="pb-4">
+              <h1 
+                className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold gradient-text mb-1 text-center sm:text-left overflow-visible"
+                style={{ lineHeight: 1.2, paddingBottom: '0.1em' }}
+              >
                 Chirag Mali
               </h1>
             </div>
 
             <div className="text-base sm:text-lg lg:text-xl xl:text-2xl font-semibold text-gray-600 dark:text-gray-300 mb-1 text-center sm:text-left">
-              Flutter Developer &{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 font-bold ml-2">
+              Software Developer &{' '}
+              <span className="text-gray-600 dark:text-gray-300 font-bold ml-2">
                 AI Enthusiast
               </span>
             </div>
             <p className="text-xs lg:text-sm text-gray-500 dark:text-gray-400 mt-3 text-center sm:text-left">
-              Professional Flutter Developer,
+              Professional Software Developer,
               crafting scalable mobile experiences with{' '}
               <span className="font-bold text-orange-600 dark:text-orange-400">Firebase</span>,{' '}
               <span className="font-bold text-green-600 dark:text-green-400">GetX</span>, and{' '}
-              <span className="font-bold text-purple-600 dark:text-purple-400">AI Integration</span>.<br />
+              <span className="font-bold text-teal-600 dark:text-teal-400">AI Integration</span>.<br />
               Building production-ready apps with 100K+ installs ✨
             </p>
           </div>
@@ -195,7 +186,7 @@ const Hero: React.FC = () => {
         >
           {[
             { number: '1+', label: 'Years Experience', icon: '💼', color: 'from-blue-500 to-cyan-500' },
-            { number: '15+', label: 'Projects Built', icon: '🚀', color: 'from-purple-500 to-pink-500' },
+            { number: '15+', label: 'Projects Built', icon: '🚀', color: 'from-teal-500 to-cyan-500' },
             { number: '5+', label: 'Apps Published', icon: '📱', color: 'from-green-500 to-emerald-500' }
           ].map((stat, index) => (
             <motion.div
@@ -295,7 +286,7 @@ const Hero: React.FC = () => {
               animate={{ y: [0, 8, 0] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
             >
-              <ArrowDown size={24} className="text-purple-600 dark:text-purple-300 group-hover:text-purple-700 dark:group-hover:text-white transition-colors duration-300" />
+              <ArrowDown size={24} className="text-teal-600 dark:text-teal-300 group-hover:text-teal-700 dark:group-hover:text-white transition-colors duration-300" />
             </motion.div>
           </MagneticButton>
         </motion.div>)}

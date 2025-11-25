@@ -27,9 +27,9 @@ const Skills: React.FC = () => {
     Frontend: "from-blue-500 to-cyan-500",
     Backend: "from-green-500 to-emerald-500",
     Database: "from-orange-500 to-red-500",
-    Mobile: "from-purple-500 to-pink-500",
-    Tools: "from-yellow-500 to-orange-500",
-    Cloud: "from-indigo-500 to-purple-500"
+    Mobile: "from-teal-500 to-cyan-500",
+    Tools: "from-amber-500 to-orange-500",
+    Cloud: "from-teal-500 to-emerald-500"
   };
 
   useEffect(() => {
@@ -55,7 +55,7 @@ const Skills: React.FC = () => {
     <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8" ref={sectionRef}>
       <div className="max-w-7xl mx-auto">
         <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <h2 className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+          <h2 className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">
             Skills & Technologies
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
@@ -71,7 +71,7 @@ const Skills: React.FC = () => {
                 }`}
               style={{ transitionDelay: `${index * 200}ms` }}
             >
-              <h3 className="text-xl font-bold mb-4 text-purple-400">
+              <h3 className="text-xl font-bold mb-4 text-teal-400">
                 {category.category}
               </h3>
               <div className="flex flex-wrap gap-3">
@@ -92,7 +92,7 @@ const Skills: React.FC = () => {
         <div className={`mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           {[
             { icon: "📚", number: "1+", label: "Years Learning", color: "from-blue-500 to-cyan-500" },
-            { icon: "🚀", number: "10+", label: "Projects Completed", color: "from-purple-500 to-pink-500" },
+            { icon: "🚀", number: "10+", label: "Projects Completed", color: "from-teal-500 to-cyan-500" },
             { icon: "📱", number: "5+", label: "Mobile Apps Published", color: "from-orange-500 to-red-500" },
           ].map((stat, index) => (
             <div

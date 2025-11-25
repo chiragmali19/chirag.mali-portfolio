@@ -80,7 +80,7 @@ const Navbar: React.FC = () => {
                 
                 {activeSection === item.id && (
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full"
+                    className="absolute inset-0 bg-gradient-to-r from-teal-600 to-cyan-600 rounded-full"
                     layoutId="activeTab"
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                   />
@@ -95,7 +95,7 @@ const Navbar: React.FC = () => {
       <motion.nav
         className={`fixed top-0 left-0 right-0 z-50 md:hidden transition-all duration-300 ${
           scrolled
-            ? 'bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-gray-200/20 dark:border-purple-500/20'
+            ? 'bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-gray-200/20 dark:border-teal-500/20'
             : 'bg-transparent'
         }`}
         initial={{ y: -100 }}
@@ -162,7 +162,7 @@ const Navbar: React.FC = () => {
                     onClick={() => scrollToSection(item.id)}
                     className={`w-full flex items-center space-x-3 px-6 py-3 text-left transition-all duration-200 ${
                       activeSection === item.id
-                        ? 'bg-gradient-to-r from-purple-600/10 to-pink-600/10 text-purple-600 dark:text-purple-400 border-r-2 border-purple-600'
+                        ? 'bg-gradient-to-r from-teal-600/10 to-cyan-600/10 text-teal-600 dark:text-teal-400 border-r-2 border-teal-600'
                         : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100/50 dark:hover:bg-white/5'
                     }`}
                     initial={{ opacity: 0, x: -20 }}
